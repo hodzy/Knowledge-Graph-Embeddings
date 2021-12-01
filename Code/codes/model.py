@@ -23,12 +23,13 @@ class KGEModel(nn.Module):
     def __init__(self, model_name, nentity, nrelation, hidden_dim, gamma,
                  double_entity_embedding=False, double_relation_embedding=False):
         super(KGEModel, self).__init__()
-        self.model_name = model_name
+        self.model_name = model_name  # ex TransE
         self.nentity = nentity  # nentity -> len(entity2id) (length of the entity dataset)
         self.nrelation = nrelation  # nrelation -> len(relation2id)
-        self.hidden_dim = hidden_dim  # default=500
+        self.hidden_dim = hidden_dim  # default=500  (apparently it means the embedding dimensions)
         self.epsilon = 2.0
 
+        # gamma is the margin i think
         self.gamma = nn.Parameter(
             torch.Tensor([gamma]),
             requires_grad=False
